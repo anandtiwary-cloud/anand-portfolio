@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-ink-950 font-sans text-slate-300 antialiased;
+    background-image:
+      radial-gradient(60rem 30rem at 85% -10%, rgba(56, 189, 248, 0.08), transparent 60%),
+      radial-gradient(50rem 30rem at -10% 20%, rgba(245, 158, 11, 0.05), transparent 60%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: rgba(245, 158, 11, 0.3);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .section {
+    @apply py-20 sm:py-28;
+  }
+  .card {
+    @apply rounded-2xl border border-ink-700 bg-ink-900/70;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-md border border-ink-600 bg-ink-800 px-2.5 py-1 font-mono text-xs text-slate-300;
+  }
+  .chip-accent {
+    @apply border-accent/30 bg-accent/10 text-accent-soft;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply bg-accent text-ink-950 hover:bg-accent-soft;
+  }
+  .btn-ghost {
+    @apply border border-ink-600 bg-ink-900 text-slate-200 hover:border-slate-500 hover:bg-ink-800;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 70%);
+  }
+  /* Animated dashed connectors */
+  .flow-v {
+    width: 2px;
+    background-image: linear-gradient(to bottom, #38bdf8 50%, transparent 50%);
+    background-size: 2px 12px;
+    opacity: 0.7;
+  }
+  .flow-h {
+    height: 2px;
+    background-image: linear-gradient(to right, #38bdf8 50%, transparent 50%);
+    background-size: 12px 2px;
+    opacity: 0.7;
+  }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
